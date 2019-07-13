@@ -1,10 +1,26 @@
 <template>
   <div>
+    <!-- 头部 -->
+    <Header/>
+    <!-- 主页 -->
     <nuxt />
+    <!-- 尾部 -->
+    <Footer/>
   </div>
 </template>
+<script>
+import Footer from '@/components/footer'
+import Header from '@/components/header'
+export default {
+  //注入组建
+  components:{
+    Footer,
+    Header
+  }
+}
+</script>
 
-<style>
+<style  scoped>
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -16,40 +32,21 @@ html {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
 }
-
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
+/* 去掉默认值 */
+*{
   margin: 0;
+  padding: 0;
 }
-
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
+/* 去掉a默认下划线,和颜色 */
+a{
   text-decoration: none;
-  padding: 10px 30px;
+  color: inherit;
 }
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
+/* 标签默认斜体 */
+em,i{
+  font-style: normal;
 }
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
+ul,li,ol{
+ list-style: none;
 }
 </style>
