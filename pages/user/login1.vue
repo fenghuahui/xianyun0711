@@ -12,12 +12,14 @@
       </el-row>
       <!-- 登陆表单导入 -->
       <loginForm v-if="current === 0" class="loginForm" />
+      <registerForm v-if="current === 1" class="registerForm" />
     </div>
   </div>
 </template>
 
 <script>
 import LoginForm from "@/components/user/loginForm";
+import registerForm from "@/components/user/registerForm";
 export default {
   data() {
     return {
@@ -25,7 +27,8 @@ export default {
     };
   },
   components: {
-    LoginForm
+    LoginForm,
+    registerForm
   },
   methods: {
     handleChangTab(index) {
@@ -37,20 +40,27 @@ export default {
 </script>
 <style lang="less" scoped>
 .mian {
-  height: 700px;
+  height: 800px;
   width: 100%;
-  position: relative;
+  // position: relative;
   background: url(http://157.122.54.189:9095/assets/images/th02.jfif) center 0;
+  // background: url('@/assets/img/1.jpg') center 0;
   .login {
     position: absolute;
     left: 50%;
     top: 45%;
     margin-left: -200px;
+    // justify-content: center;
     width: 400px;
     .loginForm {
       background-color: #fff;
       height: 232px;
       width: 400px;
+    }
+    .registerForm{
+      background-color: #fff;
+      height: 350px;
+      width: 350px;
     }
     .tabs {
       height: 50px;
