@@ -19,31 +19,40 @@
         <el-row class="login" type="flex">
           <!-- 下拉栏 -->
           <!-- <div>
-            <i class="el-icon-clock"></i>
+            <i class="el-icon-bell"></i>
             <span>消息</span>
           </div>-->
           <!-- 登陆栏 -->
-          <div v-if='!$store.state.user.userInfo.token'>
-          <nuxt-link to="/user/login1">登陆 / 注册</nuxt-link>
+          <div v-if="!$store.state.user.userInfo.token">
+            <i class="el-icon-bell"></i>
+            <span>消息</span>
+            <!-- <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item>个人中心</el-dropdown-item>
+                <el-dropdown-item >消息</el-dropdown-item>
+              </el-dropdown-menu> -->
+            <nuxt-link to="/user/login1">登陆 / 注册</nuxt-link>
           </div>
           <div v-else>
-          <el-dropdown>
-            <span class="el-dropdown-link">
-              <!-- 头像 -->
-              <img :src="$axios.defaults.baseURL+$store.state.user.userInfo.user.defaultAvatar" alt="">
-              <!-- 昵称 -->
-              {{$store.state.user.userInfo.user.nickname}}
-              <i class="el-icon-arrow-down el-icon--right"></i>
-            </span>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>个人中心</el-dropdown-item>
-              <el-dropdown-item @click.native="handleQuit">退出</el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
+            <el-dropdown>
+              <span class="el-dropdown-link">
+                <!-- 头像 -->
+                <img
+                  :src="$axios.defaults.baseURL+$store.state.user.userInfo.user.defaultAvatar"
+                  alt
+                />
+                <!-- 昵称 -->
+                {{$store.state.user.userInfo.user.nickname}}
+                <i
+                  class="el-icon-arrow-down el-icon--right"
+                ></i>
+              </span>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item>个人中心</el-dropdown-item>
+                <el-dropdown-item @click.native="handleQuit">退出</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
           </div>
         </el-row>
-        <!-- 隐藏栏 -->
-        <div v-show="false"></div>
       </div>
     </el-row>
   </div>
@@ -52,10 +61,10 @@
 <script>
 export default {
   methods: {
-    handleQuit(){
+    handleQuit() {
       //吧token值设置为空  因为清空的时候不确定是不是当下那个所以再click后面加native
-      this.$store.commit('user/clearUserInfo')
-      this.$message.success('退出成功')
+      this.$store.commit("user/clearUserInfo");
+      this.$message.success("退出成功");
     }
   }
 };
@@ -107,10 +116,10 @@ export default {
           color: #409eff;
         }
       }
-      .el-dropdown-link{
-        img{
-          width:36px;
-          height:36px;
+      .el-dropdown-link {
+        img {
+          width: 36px;
+          height: 36px;
           vertical-align: middle;
         }
       }

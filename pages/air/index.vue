@@ -2,7 +2,7 @@
   <div class="air">
     <!-- 国内机票 -->
     <el-row class="head">
-      <i class="el-icon-location-outline"></i>
+      <i class="iconfont iconfeiji"></i>
       <span>国内机票</span>
     </el-row>
     <!-- 查询表单模块 -->
