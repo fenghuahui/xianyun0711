@@ -197,7 +197,8 @@ export default {
 .seach {
   border: 1px solid #eee;
   width: 360px;
-  margin-bottom: 100px;
+  height: 350px;
+  // margin-bottom: 100px;
   position: relative;
   .chuangIcon {
     position: absolute;
