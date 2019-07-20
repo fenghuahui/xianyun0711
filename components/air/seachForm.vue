@@ -18,7 +18,7 @@
         <el-autocomplete
           v-model="form.departCity"
           placeholder="请搜索出发城市"
-          @select="handleSelect"
+          @select="handleDepSelect"
           :fetch-suggestions="queryDepSearchAsync"
         ></el-autocomplete>
       </el-form-item>
@@ -27,7 +27,7 @@
           v-model="form.destCity"
           placeholder="请搜索到达城市"
           :fetch-suggestions="queryDesSearchAsync"
-          @select="handleDes"
+          @select="handleDesSelect"
         ></el-autocomplete>
       </el-form-item>
       <el-form-item label="出发时间">
@@ -77,8 +77,16 @@ export default {
       }
       // this.current = 0;
     },
-    //选择时改变
-    handleSelect() {},
+    //出发城市选择时改变
+    handleDepSelect(item) {
+      this.form.departCity = item.value;
+      this.form.departCode = item.sort;
+    },
+    // 目标城市选择时改变
+    handleDesSelect(item){
+      this.form.destCity = item.value;
+      this.form.destCode = item.sort;
+    },
     //有值的时候匹配相对性值
     //value  输入框的值
     // 选择出发城市
@@ -184,10 +192,21 @@ export default {
       //如果valid = trun 那么跳转
       if(valid){
         this.$router.push({
-          path:'/airs/flights',
+          path:'/air/flights',
           query:this.form
         })
       }
+      //把当前的搜索条件储存到本地的数组中
+      //本地存储拿出来
+      const airs = JSON.parse(localStorage.getItem('airs')) || [];
+      //每一条记录更新最前面
+      airs.unshift(this.form)
+      //截取显示数据只剩下5个
+      if(airs.length>5){
+        airs.length = 5;
+      }
+      //本地储存存进去
+      localStorage.setItem('airs',JSON.stringify(airs))
     }
   }
 };
