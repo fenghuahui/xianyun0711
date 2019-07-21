@@ -2,21 +2,22 @@
     <div class="container">
         <el-row type="flex" justify="space-between">
             <!-- 订单表单 -->
-            <div class="main">
-                
-            </div>
+            <orderForm/>
 
             <!-- 侧边栏 -->
-            <div class="aside">
-                          
-            </div>
+            <!-- <orderAside/> -->
         </el-row>
     </div>
 </template>
 
 <script>
+import  orderForm  from  '@/components/air/orderForm'
+import  orderAside from  '@/components/air/orderAside'
 export default {
-    
+    components: {
+      orderForm,
+      orderAside
+    }
 }
 </script>
 
