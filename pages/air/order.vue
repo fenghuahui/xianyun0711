@@ -5,7 +5,7 @@
             <orderForm/>
 
             <!-- 侧边栏 -->
-            <!-- <orderAside/> -->
+            <orderAside/>
         </el-row>
     </div>
 </template>

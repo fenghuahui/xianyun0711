@@ -31,8 +31,12 @@
     <div class="air-column">
       <h2>保险</h2>
       <div>
-        <div class="insurance-item">
-          <el-checkbox label="航空意外险：￥30/份×1  最高赔付260万" border></el-checkbox>
+        <div class="insurance-item"
+        v-for="(item,index) in infoData.insurances" :key="index">
+          <el-checkbox
+           :label="`${item.type}：￥${item.price}/份×1  最高赔付${item.compensation}万`"
+            @change="changeInsurances(item)"
+            border></el-checkbox>
         </div>
       </div>
     </div>
@@ -79,8 +83,28 @@ export default {
       invoice: "", //发票
       seat_xid: "", //座位Id
       air: "", //航班id
-      captcha: "" //验证码
+      captcha: "" ,//验证码
+      infoData:{
+        insurances:[]
+      }
     };
+  },
+  computed: {
+    allPrice(){
+      let price = 0 ;
+      //判断数据有没有回来，如果还没有那么返回一个0
+      if(!this.infoData.airport_audlet) return 0 ;
+      //机票单价
+      price += this.infoData.seat_infos.org_settle_price;
+      //基建燃油费
+      price += this.infoData.airport_tax_audlet;
+      //保险
+      price += this.insurances.length * 30;
+      //人数
+      price += this.users.length;
+      //使用store同步请求
+      this.$store.commit('air/setAllPrice',price) 
+    }
   },
   methods: {
     // 添加乘机人
