@@ -27,7 +27,7 @@
       <!-- 分页 -->
 
       <!-- 侧边栏 -->
-      <FlightsAside />
+      <FlightsAside @changeFlights = 'changeFlights'/>
     </el-row>
   </section>
 </template>

@@ -4,7 +4,8 @@
       <!-- 显示的机票信息 -->
       <el-row type="flex" align="middle" class="flight-info">
         <el-col :span="6">
-          <span>{{data.airline_name}}</span> {{data.flight_no}}
+          <span>{{data.airline_name}}</span>
+          {{data.flight_no}}
         </el-col>
         <el-col :span="12">
           <el-row type="flex" justify="space-between" class="flight-info-center">
@@ -29,16 +30,20 @@
     </div>
     <div class="flight-recommend">
       <!-- 隐藏的座位信息列表 -->
-      <el-row type="flex" 
-      justify="space-between" 
-      align="middle" 
-      v-show="isShow"
-      v-for="(item,index) in data.seat_infos" :key="index">
+      <el-row
+        type="flex"
+        justify="space-between"
+        align="middle"
+        v-show="isShow"
+        v-for="(item,index) in data.seat_infos"
+        :key="index"
+      >
         <el-col :span="4">低价推荐</el-col>
         <el-col :span="20">
           <el-row type="flex" justify="space-between" align="middle" class="flight-sell">
             <el-col :span="16" class="flight-sell-left">
-              <span>{{item.group_name}}</span> | {{item.supplierName}}
+              <span>{{item.group_name}}</span>
+              | {{item.supplierName}}
             </el-col>
             <el-col :span="5" class="price">￥{{item.org_settle_price}}</el-col>
             <el-col :span="3" class="choose-button">
@@ -69,40 +74,40 @@ export default {
     }
   },
   computed: {
-    rankTime(){
+    rankTime() {
       //获取出发时间和到达时间
-      const arr = this.data.arr_time
-      const dep = this.data.dep_time
+      const arr = this.data.arr_time;
+      const dep = this.data.dep_time;
       //用：切割开成为数组
-      let end = arr.split(':');
-      let start = dep.split(':');
+      let end = arr.split(":");
+      let start = dep.split(":");
       //判断出发时间是否比到达时间长，如果短是第二天凌晨，则加上24
-      if(end<start){
+      if (end < start) {
         // end[0]=end[0]/1
-       end[0] = +end[0] + 24
+        end[0] = +end[0] + 24;
         console.log(end[0]);
-      } 
-      
+      }
+
       //先把小时转成分钟   转成数字 “+”
-      const dis = (+end[0]*60 + +end[1]) - (+start[0]*60 + +start[1])
+      const dis = +end[0] * 60 + +end[1] - (+start[0] * 60 + +start[1]);
       //把结果转回小时数向下取整+%出来的余数
-      const hours = Math.floor(+dis/60);
+      const hours = Math.floor(+dis / 60);
       //分钟
-      const min = dis%60;
-      return `${hours}时${min}分钟`
+      const min = dis % 60;
+      return `${hours}时${min}分钟`;
     }
   },
   methods: {
-    handleToOrder(id,seat_xid){
-          // 根据座位号跳转
-          this.$router.push({
-            path:'/air/order',
-            query:{
-              id,seat_xid
-            }
-          })
-
+    handleToOrder(id, seat_xid) {
+      // 根据座位号跳转
+      this.$router.push({
+        path: "/air/order",
+        query: {
+          id,
+          seat_xid
         }
+      });
+    }
   }
 };
 </script>

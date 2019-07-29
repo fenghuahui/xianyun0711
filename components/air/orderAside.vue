@@ -19,8 +19,8 @@
                     <span>{{data.airline_name}}{{data.flight_no}}</span>
                 </el-col>
                 <el-col :span="5" class="flight-airport">
-                    <strong>10:00</strong>
-                    <span>浦东机场T2</span>
+                    <strong>{{data.arr_time}}</strong>
+                    <span>{{data.dst_airport_name}}</span>
                 </el-col>
             </el-row> 
         </div>
@@ -41,7 +41,7 @@
         </el-row>
         <el-row type="flex" justify="space-between" align="middle" class="info-bar">
             <span>应付总额：</span>
-            <span class="price">￥ </span>
+            <span class="price">￥{{data.seat_infos.settle_price}} </span>
         </el-row>           
     </div>
 </template>
@@ -51,7 +51,9 @@ export default {
     props: {
         data: {
             type: Object,
-            default: {}
+            default: {
+              seat_infos:{}  
+            }
         }
     },
 
